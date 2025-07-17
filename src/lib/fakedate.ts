@@ -18,3 +18,6 @@ export const fakedate: iproduct[] = Array.from(
     colors: ["#A31ACB", "#3C2A21", "#1F8A70", "#820000", "#FF0032"],
   }),
 );
+
+
+export const allcolorss = ["#A31ACB", "#3C2A21", "#1F8A70", "#820000", "#FF0032"];

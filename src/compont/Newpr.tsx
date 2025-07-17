@@ -2,6 +2,7 @@ import { Button, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import { useState } from 'react'
 import Colors from './Colors'
 import type { iproduct } from '../interfaces/iproduct';
+import Errorvalid from './Errorvalid';
 
 interface inewpr {
   color: string[];
@@ -17,23 +18,42 @@ export default function Newpr({ color,products,setproduct }: inewpr) {
     colors : [],
     categ:""
   }
+
+   const errorval={
+    image:false,
+    name:false,
+    des:false,
+    price:false,
+    colors : false
+  }
   let [isOpen, setIsOpen] = useState(false)
   const [selectedcolors, setselect] = useState<string[]>([])
   const [newpr , setnewpr]=useState<iproduct>(defaultval)
+  const [errors,seterros]=useState(errorval)
 
   function open() {
     setIsOpen(true)
   }
 
   function close() {
+    console.log(errors +"before")
+    if( errors.colors===true || errors.price===true || errors.des===true || errors.name===true || errors.image===true ){
+      return;
+    }
+     console.log(errors +"after")
+    
+    
     const updatedNewPr = { ...newpr, colors: selectedcolors };
     setnewpr(updatedNewPr);
     setproduct([updatedNewPr,...products])
     setselect([])
     setnewpr(defaultval)
+    seterros(errorval)
     setIsOpen(false)
+    
 
   }
+  
   
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -68,15 +88,18 @@ export default function Newpr({ color,products,setproduct }: inewpr) {
                 <label htmlFor="" className={style2}>title</label>
                 <br />
                 <input type="text" name="name" id="" className={style} value={newpr.name} onChange={handleChange}  />
+                <Errorvalid field='title' value={newpr.name} seterros={seterros}/>
                 <br />
                 <label htmlFor="" className={style2}>image url</label>
                 <br />
-                <input type="url" name="image" id="" className={style} value={newpr.image} onChange={handleChange} />
+                <input type="url" name="image" id="" className={style} value={newpr.image} onChange={handleChange}  />
                 <br />
                 <label htmlFor="" className={style2}>price</label>
                 <br />
                 <input type="number" className={style} name='price' value={newpr.price} onChange={handleChange} />
+                <Errorvalid field='price' valuenum={newpr.price} seterros={seterros}/>
                 <br />
+                
                 <label htmlFor="" className={style2}>category</label>
                 <br />
                 <select name="categ" id="a" className={style} value={newpr.categ} onChange={handleChange}>
@@ -87,6 +110,8 @@ export default function Newpr({ color,products,setproduct }: inewpr) {
                 <label htmlFor="" className={style2}>description</label>
                 <br />
                 <textarea name="des" id="" className={style} value={newpr.des} onChange={handleChange}></textarea>
+                <Errorvalid field='des' value={newpr.des} seterros={seterros}/>
+
 
                 <div>
                   {selectedcolors?.map(c =>
@@ -102,6 +127,7 @@ export default function Newpr({ color,products,setproduct }: inewpr) {
                 <div>
                   <Colors colors={allcolors} curs='pointer' setselect={setselect} selectedcolors={selectedcolors} />
                 </div>
+                <Errorvalid field='colors' selectedcolors={selectedcolors} seterros={seterros}/>
 
               </div>
               <div className="mt-4 flex  justify-end">
