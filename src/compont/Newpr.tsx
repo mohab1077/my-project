@@ -45,7 +45,7 @@ export default function Newpr({ color }: inewpr) {
               <div>
                 <label htmlFor="" className={style2}>title</label>
                 <br />
-                <input type="text" name="" id="" className={style} />
+                <input type="text" name="" id="" className={style}  />
                 <br />
                 <label htmlFor="" className={style2}>image url</label>
                 <br />
