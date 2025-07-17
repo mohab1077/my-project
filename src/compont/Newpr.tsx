@@ -1,23 +1,45 @@
 import { Button, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import { useState } from 'react'
 import Colors from './Colors'
+import type { iproduct } from '../interfaces/iproduct';
 
 interface inewpr {
   color: string[];
+  products:iproduct[];
+  setproduct:React.Dispatch<React.SetStateAction<iproduct[]>>;
 }
-export default function Newpr({ color }: inewpr) {
+export default function Newpr({ color,products,setproduct }: inewpr) {
+  const defaultval={
+    image:"",
+    name:"",
+    des:"",
+    price:0,
+    colors : [],
+    categ:""
+  }
   let [isOpen, setIsOpen] = useState(false)
   const [selectedcolors, setselect] = useState<string[]>([])
+  const [newpr , setnewpr]=useState<iproduct>(defaultval)
 
   function open() {
     setIsOpen(true)
   }
 
   function close() {
+    const updatedNewPr = { ...newpr, colors: selectedcolors };
+    setnewpr(updatedNewPr);
+    setproduct([updatedNewPr,...products])
     setselect([])
+    setnewpr(defaultval)
     setIsOpen(false)
 
   }
+  
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const { name, value } = e.target;
+  setnewpr((prev) => ({ ...prev, [name]: value }));
+};
 
   const style = 'w-full border-2 border-black  rounded-md mt-1.5'
   const style2 = 'font-medium'
@@ -45,25 +67,26 @@ export default function Newpr({ color }: inewpr) {
               <div>
                 <label htmlFor="" className={style2}>title</label>
                 <br />
-                <input type="text" name="" id="" className={style}  />
+                <input type="text" name="name" id="" className={style} value={newpr.name} onChange={handleChange}  />
                 <br />
                 <label htmlFor="" className={style2}>image url</label>
                 <br />
-                <input type="url" name="" id="" className={style} />
+                <input type="url" name="image" id="" className={style} value={newpr.image} onChange={handleChange} />
                 <br />
                 <label htmlFor="" className={style2}>price</label>
                 <br />
-                <input type="number" className={style} />
+                <input type="number" className={style} name='price' value={newpr.price} onChange={handleChange} />
                 <br />
                 <label htmlFor="" className={style2}>category</label>
                 <br />
-                <select name="a" id="a" className={style}>
-                  <option value="">a</option>
+                <select name="categ" id="a" className={style} value={newpr.categ} onChange={handleChange}>
+                  <option  value="car">car</option>
+                   <option  value="clothes">clothes</option>
                 </select>
                 <br />
                 <label htmlFor="" className={style2}>description</label>
                 <br />
-                <textarea name="" id="" className={style}></textarea>
+                <textarea name="des" id="" className={style} value={newpr.des} onChange={handleChange}></textarea>
 
                 <div>
                   {selectedcolors?.map(c =>

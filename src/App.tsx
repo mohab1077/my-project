@@ -14,7 +14,7 @@ function App() {
   return (
     <div>
     <div className="m-2 flex justify-end">
-      <Newpr color={products[0].colors}/>
+      <Newpr color={products[0].colors} products={products} setproduct={setproduct}/>
     </div>
    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 my-6 mx-2.5  ">
      {mode}
