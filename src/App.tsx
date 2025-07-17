@@ -9,6 +9,7 @@ import Newpr from "./compont/Newpr"
 function App() {
   
    const [products , setproduct] = useState<iproduct[]>(fakedate)
+   
    const mode  = products.map(c=> <Prmodel {...c} /> )
   return (
     <div>
