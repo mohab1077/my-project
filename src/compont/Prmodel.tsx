@@ -1,5 +1,5 @@
 import type { iproduct } from "../interfaces/iproduct";
-import Colors from "./colors";
+import Colors from "./Colors";
 
 
 function Prmodel({ image,
