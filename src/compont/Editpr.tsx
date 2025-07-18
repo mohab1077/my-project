@@ -11,14 +11,7 @@ interface Ieditpr {
     valuepr: iproduct
 }
 export default function Editpr({ color, products, setproduct, valuepr }: Ieditpr) {
-    const defaultval = {
-        image: "",
-        name: "",
-        des: "",
-        price: 0,
-        colors: [],
-        categ: ""
-    }
+    
 
     const errorval = {
         image: false,

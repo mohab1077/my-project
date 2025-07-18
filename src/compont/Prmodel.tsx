@@ -1,6 +1,7 @@
 import type { iproduct } from "../interfaces/iproduct";
 import { allcolorss } from "../lib/fakedate";
 import Colors from "./Colors";
+import Deletepr from "./Deletepr";
 import Editpr from "./Editpr";
 
 interface Iprmodel{
@@ -11,9 +12,7 @@ interface Iprmodel{
 function Prmodel({data,products,setproduct}:Iprmodel){
 
    
-     const remove_hand = () => {
-        console.log("hi")
-    }
+  
 
    
     const allcolors = data.colors.map(c => c);
@@ -36,14 +35,12 @@ function Prmodel({data,products,setproduct}:Iprmodel){
                     
                  color={allcolorss} products={products} setproduct={setproduct} valuepr={data}
                 />
-                <button
-                    className=" bg-red-600 w-full h-10 rounded-md text-white 
-             hover:bg-red-700 hover:scale-105 hover:shadow-lg 
-             transition-all duration-300 ease-in-out cursor-pointer"
-                    onClick={remove_hand}
-                >
-                    remove
-                </button>
+
+                <Deletepr
+                    
+                 products={products} setproduct={setproduct} valuepr={data}
+                />
+               
             </div>
         </div>
 
