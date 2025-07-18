@@ -19,14 +19,14 @@ export default function Errorvalid({ field, value, valuenum, selectedcolors, set
 
 
     useEffect(() => {
-        if (field === "title" && value && value?.length < 15 && value != "") {
+        if ((field === "title" && value && value?.length < 15) || value === "" && field === "title" ) {
             seterror("must be above 15 char");
             seterros((prev) => ({
                 ...prev,
                 name: true
             }));
         }
-        else if (field === "price" && valuenum && valuenum < 50 && valuenum != 0) {
+        else if ((field === "price" && valuenum && valuenum < 50) ||valuenum===0 ) {
             seterror("must be above 50");
              seterros((prev) => ({
                 ...prev,
@@ -34,7 +34,7 @@ export default function Errorvalid({ field, value, valuenum, selectedcolors, set
             }));
 
         }
-        else if (field === "des" && value && value?.length < 20 && value != "") {
+        else if ((field === "des" && value && value?.length < 20) || value === ""  ) {
             seterror("must be above 20 char");
              seterros((prev) => ({
                 ...prev,
