@@ -10,7 +10,7 @@ function App() {
   
    const [products , setproduct] = useState<iproduct[]>(fakedate)
    
-   const mode  = products.map(c=> <Prmodel {...c} /> )
+   const mode  = products.map(c=> <Prmodel data={c} products={products} setproduct={setproduct} /> )
   return (
     <div>
     <div className="m-2 flex justify-end">

@@ -1,5 +1,5 @@
 import { Button, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
-import { useEffect, useState } from 'react'
+import {  useState } from 'react'
 import Colors from './Colors'
 import type { iproduct } from '../interfaces/iproduct';
 import Errorvalid from './Errorvalid';
@@ -40,13 +40,11 @@ export default function Newpr({ color, products, setproduct }: inewpr) {
   function close() {
     
    setclick(true)
-   console.log("hi")
-   console.log(newpr)
+   
       if(newpr.name=="" ||newpr.price==0 || newpr.image=="" ||newpr.des=="" ||selectedcolors.length==0 ){
         return;
       }
-      console.log("hi2")
-      console.log(newpr)
+      
       
       if (errors.colors === true || errors.price === true || errors.des === true || errors.name === true || errors.image === true) {
         return;
