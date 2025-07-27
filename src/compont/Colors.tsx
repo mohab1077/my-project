@@ -1,3 +1,4 @@
+import { memo } from "react";
 
 interface Icolor {
   colors: string[];
@@ -28,4 +29,4 @@ function Colors({ colors, curs, setselect, selectedcolors }: Icolor) {
   )
 }
 
-export default Colors
+export default memo(Colors)

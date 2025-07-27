@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 
 interface Ierror {
     field: string;
@@ -14,7 +14,7 @@ interface Ierror {
     }>>
 }
 
-export default function Errorvalid({ field, value, valuenum, selectedcolors, seterros }: Ierror) {
+function Errorvalid({ field, value, valuenum, selectedcolors, seterros }: Ierror) {
     const [error, seterror] = useState<string>('');
 
 
@@ -84,3 +84,5 @@ export default function Errorvalid({ field, value, valuenum, selectedcolors, set
         </>
     )
 }
+
+export default memo(Errorvalid)

@@ -1,5 +1,5 @@
 import { Button, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import Colors from './Colors'
 import type { iproduct } from '../interfaces/iproduct';
 import Errorvalid from './Errorvalid';
@@ -75,7 +75,9 @@ export default function Editpr({ color, products, setproduct, valuepr }: Ieditpr
 
     const style = 'w-full border-2 border-black  rounded-md mt-1.5'
     const style2 = 'font-medium'
-    const allcolors = color.map(c => c);
+    //const allcolors = color.map(c => c);
+    const allcolors = useMemo(() => color.map(c => c), [color]);
+    
 
     return (
         <>

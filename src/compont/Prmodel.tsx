@@ -1,3 +1,4 @@
+import {  useMemo } from "react";
 import type { iproduct } from "../interfaces/iproduct";
 import { allcolorss } from "../lib/fakedate";
 import Colors from "./Colors";
@@ -15,7 +16,8 @@ function Prmodel({data,products,setproduct}:Iprmodel){
   
 
    
-    const allcolors = data.colors.map(c => c);
+    //const allcolors = data.colors.map(c => c);
+    const allcolors = useMemo(() => data.colors.map(c => c), [data.colors]);
     return (
 
 
